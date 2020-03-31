@@ -15,7 +15,7 @@ inputName.focus();
 const tSize = document.querySelectorAll("#size option");
 //const tDesign = document.querySelectorAll("#theme");
 const tColors = document.querySelectorAll("colors");
-const tDesign = document.getElementById("theme");
+const tDesign = document.querySelector('option[value="js puns"]');
 
 tDesign.hidden = true;
 
