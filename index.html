@@ -44,7 +44,7 @@
 								const titleValue = document.getElementById("title").value;
 								const otherTitle = document.getElementById("other-title");
 
-								if (title.value == "other") {
+								if (title.value === "other") {
 									otherTitle.style.display = "Block";
 								} else {
 									otherTitle.style.display = "none";
@@ -71,8 +71,7 @@
 					<div class="shirt-box">
 						<div>
 							<label for="size">Size:</label>
-							<!-- I write in the onchange method for the shirtsize drop down
-							list. -->
+
 							<select id="size" name="user-size">
 								<option value="Select a Size" disabled selected>
 									Size
@@ -88,7 +87,7 @@
 							<label for="design">Design:</label>
 							<select id="design" name="user-design">
 								<option value="shirt theme" disabled selected>
-									Please select a T-shirt theme
+									Design
 								</option>
 								<option value="js puns" id="theme">
 									Theme - JS Puns
@@ -101,22 +100,26 @@
 
 						<div id="colors-js-puns" class="">
 							<label for="color">Color:</label>
-							<select id="color">
-								<option value="" disabled selected>Color</option>
-								<option value="cornflowerblue" id="jsp">
+							<select id="color" onchange="(event.value)">
+								<option value="color" disabled selected>
+									Please Select a T-shirt Theme
+								</option>
+								<option value="cornflowerblue" class="colors" id="jsp">
 									Cornflower Blue (JS Puns shirt only)
 								</option>
-								<option value="darkslategrey" id="jsp">
+								<option value="darkslategrey" class="colors" id="jsp">
 									Dark Slate Grey (JS Puns shirt only)
 								</option>
-								<option value="gold" id="jsp">Gold (JS Puns shirt only)</option>
-								<option value="tomato" id="hjs">
+								<option value="gold" class="colors" id="jsp">
+									Gold (JS Puns shirt only)
+								</option>
+								<option value="tomato" class="colors" id="hjs">
 									Tomato (I &#9829; JS shirt only)
 								</option>
-								<option value="steelblue" id="hjs">
+								<option value="steelblue" class="colors" id="hjs">
 									Steel Blue (I &#9829; JS shirt only)
 								</option>
-								<option value="dimgrey" id="hjs">
+								<option value="dimgrey" class="colors" id="hjs">
 									Dim Grey (I &#9829; JS shirt only)
 								</option>
 							</select>
