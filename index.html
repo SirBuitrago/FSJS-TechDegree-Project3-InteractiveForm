@@ -10,7 +10,8 @@
 		<div class="container">
 			<header>
 				<span>Register for</span>
-				<h1>Full Stack Conf</h1>
+
+				<h1 class="sign">Full Stack Conf</h1>
 			</header>
 
 			<form action="index.html" method="post" novalidate>
@@ -60,7 +61,7 @@
 							inputtype="text"
 							id="other-title"
 							placeholder="Your Job Role"
-							style="display:none"
+							style="display: none;"
 						/>
 					</select>
 				</fieldset>
@@ -139,6 +140,7 @@
 							name="js-frameworks"
 							data-day-and-time="Tuesday 9am-12pm"
 							data-cost="100"
+							id="T912AM"
 						/>
 						JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100
 					</label>
@@ -148,6 +150,7 @@
 							name="js-libs"
 							data-day-and-time="Tuesday 1pm-4pm"
 							data-cost="100"
+							id="T14PM"
 						/>
 						JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100
 					</label>
@@ -157,6 +160,7 @@
 							name="express"
 							data-day-and-time="Tuesday 9am-12pm"
 							data-cost="100"
+							id="T912AM"
 						/>
 						Express Workshop — Tuesday 9am-12pm, $100
 					</label>
@@ -166,6 +170,7 @@
 							name="node"
 							data-day-and-time="Tuesday 1pm-4pm"
 							data-cost="100"
+							id="T14PM"
 						/>
 						Node.js Workshop — Tuesday 1pm-4pm, $100
 					</label>
@@ -175,6 +180,7 @@
 							name="build-tools"
 							data-day-and-time="Wednesday 9am-12pm"
 							data-cost="100"
+							id="W912AM"
 						/>
 						Build tools Workshop — Wednesday 9am-12pm, $100
 					</label>
@@ -184,8 +190,12 @@
 							name="npm"
 							data-day-and-time="Wednesday 1pm-4pm"
 							data-cost="100"
+							id="W14PM"
 						/>
 						npm Workshop — Wednesday 1pm-4pm, $100
+					</label>
+					<label>
+						<input type="box" name="conf-total" class="conf-total" />
 					</label>
 				</fieldset>
 				<fieldset>
@@ -263,7 +273,3 @@
 		<script src="js/script.js"></script>
 	</body>
 </html>
-
-//Thank you for taking a look at my code. I am going for the "Exceeds
-Expectations" grade. If its not on par with that grade, then please reject this
-project for resubmission.
