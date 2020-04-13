@@ -67,7 +67,7 @@ checkboxOptions.addEventListener("change", (e) => {
 		const checkboxType = checkboxes[i].getAttribute("data-day-and-time");
 
 		if (clickedType === checkboxType && clicked !== checkBoxIteration) {
-			if ((clicked.checked = true || false)) {
+			if (clicked.checked == true || false) {
 				checkBoxIteration.disabled = true;
 			} else {
 				checkBoxIteration.disabled = false;
