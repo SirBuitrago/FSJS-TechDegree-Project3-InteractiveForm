@@ -45,7 +45,7 @@ form {
 	padding: 0.875em 1.875em 1.875em;
 	border: 2px solid black(8, 63, 87, 0.6);
 	border-radius: 3px;
-	background-image: linear-gradient(khaki, olive);
+	background-image: linear-gradient(whitesmoke, grey);
 }
 
 fieldset,
@@ -58,7 +58,7 @@ button {
 
 fieldset {
 	margin-top: 1.5em;
-	color: blanchedalmond;
+	color: ghostwhite;
 }
 
 legend,
@@ -102,7 +102,7 @@ input {
 
 input:focus {
 	background: ghostwhite;
-	border-color: chartreuse;
+	border-color: aquamarine;
 	transition: border-color 0.4s, background-color 0.4s;
 }
 
@@ -112,9 +112,9 @@ input[type="radio"] {
 }
 
 button {
-	color: blanchedalmond;
+	color: ghostwhite;
 	padding: 0.55em 1.25em;
-	background: olive;
+	background: darkslategrey;
 	margin: 1.25em 0 0.5em;
 	cursor: pointer;
 	border: 2px solid black;
@@ -123,8 +123,8 @@ button {
 }
 
 button:hover {
-	background: olivedrab;
-	border-color: chartreuse;
+	background: lightslategray;
+	border-color: aquamarine;
 }
 
 input,
