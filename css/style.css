@@ -123,7 +123,7 @@ button {
 }
 
 button:hover {
-	background: darkslategray;
+	background: lightsteelblue;
 	border-color: aquamarine;
 }
 
@@ -174,8 +174,7 @@ option {
 }
 
 .conf-total {
-	width: 75px;
-	height: 25px;
+	font-size: 1em;
 }
 
 /* ================================= 

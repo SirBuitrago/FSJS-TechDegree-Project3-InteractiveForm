@@ -3,7 +3,7 @@ Brian Buitrago
 Treehouse Techdegree:
 FSJS project 3 - Interactive Form
 ******************************************/
-//Thank you for taking a look at my code. I am going for the "Exceeds Expectations" grade. If its not on par with that grade, then please reject this project for resubmission.
+//Thank you for taking a look at my code. I am going for the "Exceeds Expectations" grade. If my code is not on par with that grade, then please reject this project for resubmission.
 
 "use strict";
 
@@ -11,7 +11,7 @@ FSJS project 3 - Interactive Form
 const inputName = document.getElementById("name");
 inputName.focus();
 
-//Here I declare variables that contain elements from the HTML file, create a function, event listener and if statement to control the flow of the drop down list and what options are hidden, unless a specific option is selected- in the previous list.
+//Here I declare global variables for the "T-shirt info" section, create a function, event listener and if statement to control the flow of the drop down list and what options are hidden, unless a specific option is selected- in the previous list.
 
 const tSize = document.querySelectorAll("#size option");
 const tColors = document.querySelectorAll(".colors");
@@ -28,7 +28,7 @@ function hideColors() {
 	}
 }
 hideColors();
-//Event listener that determines which elements to show in the "color" droplist according to what is chosen in the previous drop list.
+//Event listener that determines which elements to show in the "color" droplist according to what is chosen in the previous "design" drop list.
 
 tDesign.addEventListener("change", (e) => {
 	for (let i = 0; i < 3; i++) {
@@ -47,33 +47,49 @@ tDesign.addEventListener("change", (e) => {
 		}
 	}
 
-	console.log("This event works!");
+	//console.log("This event works!");
 });
 
-//Logging declared variables to the console, to verify desired output.-Register for Activities section
-const checkboxes = document.querySelectorAll(".activities input");
+//Declaring global variables for the "Register for Activities" section.
+let totalCost = 0;
 const checkboxOptions = document.querySelector(".activities");
+const checkboxesCost = Array.from(document.getElementsByClassName("data-cost"));
 
-//Event listener for disabling the chekc boxes that overlap with a similar time slot conf. The for loop is to iterate over the checkboxes and determine their same type, for said disabling. I also add the sum of the checkbox options that are clicked and print them to page.
+//Event listener for disabling the check boxes within the "Register for Activities" section that overlap or conflict with a similar time slot. The for loop is to iterate over the checkboxes and determine their same type, for said disabling. I also add the sum of the checkbox options that are clicked and print them to page.
 checkboxOptions.addEventListener("change", (e) => {
-	let costTotal = 0;
-	let clicked = e.target;
-	let clickedCost = clicked.getAttribute("data-cost");
-	const clickedType = clicked.getAttribute("data-day-and-time");
+	let clicked = e.target.checked;
+	const total = document.querySelector(".conf-total");
+	const clickedCost = parseInt(e.target.getAttribute("data-cost"));
+	const clickedType = e.target.getAttribute("data-day-and-time");
+	const checkboxes = document.querySelectorAll(".activities input");
+
+	if (clicked) {
+		totalCost += clickedCost;
+		total.innerHTML = "Total: $" + totalCost;
+	} else {
+		totalCost -= clickedCost;
+		total.innerHTML = "Total: $" + totalCost;
+	}
+	if (totalCost === 0) {
+		total.style.display = "none";
+	} else {
+		total.style.display = "block";
+	}
 
 	for (let i = 0; i < checkboxes.length; i++) {
 		let checkBoxIteration = checkboxes[i];
+		const dates = checkboxes[i].getAttribute("data-day-and-time");
 
-		const checkboxType = checkboxes[i].getAttribute("data-day-and-time");
-
-		if (clickedType === checkboxType && clicked !== checkBoxIteration) {
-			if (clicked.checked == true || false) {
+		if (clickedType === dates && e.target !== checkBoxIteration) {
+			if (clicked) {
 				checkBoxIteration.disabled = true;
+				checkBoxIteration.parentElement.style.color = "grey";
 			} else {
 				checkBoxIteration.disabled = false;
+				checkBoxIteration.parentElement.style.color = "black";
 			}
 		}
 	}
-	console.log(clickedCost);
-	console.log("This click event is functional");
+
+	//console.log("This click event is functional");
 });

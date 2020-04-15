@@ -131,7 +131,12 @@
 				<fieldset class="activities">
 					<legend>Register for Activities</legend>
 					<label>
-						<input type="checkbox" name="all" data-cost="200" />
+						<input
+							type="checkbox"
+							name="all"
+							data-cost="200"
+							data-day-and-time=""
+						/>
 						Main Conference — $200
 					</label>
 					<label>
@@ -194,9 +199,11 @@
 						/>
 						npm Workshop — Wednesday 1pm-4pm, $100
 					</label>
-					<label>
-						<input type="box" name="conf-total" class="conf-total" />
-					</label>
+					<label
+						name="conf-total"
+						class="conf-total"
+						style="display: none;"
+					></label>
 				</fieldset>
 				<fieldset>
 					<legend>Payment Info</legend>
