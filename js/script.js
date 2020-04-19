@@ -326,18 +326,33 @@ function cvvEventParameters(validator) {
 
 inputCVV.addEventListener("input", cvvEventParameters(validateCVV));
 
-//This is an event listener for the Register Button, to verify that the user has sucessfully input the necessary information in all the form fields. If not, the page prevents the form - from being submitted by reloading the page.
+//This is an event listener for the Register Button, to verify that the user has sucessfully input the necessary information in all the form fields. If not, error messages are displayed by each field, in accordance to what is missing or input the wrong way.
 
+const alertMessage = document.createElement("span");
 const inputRegisterButton = document.querySelector("form");
 
 inputRegisterButton.addEventListener("submit", (e) => {
 	if (!validateName(inputName.value)) {
+		inputName.style.borderColor = "red";
+		inputName.previousElementSibling.textContent = "A valid Name is needed.";
+		inputName.previousElementSibling.style.color = "red";
 		e.preventDefault();
 	}
 	if (!validateEmail(inputEmail.value)) {
+		inputEmail.style.borderColor = "red";
+		inputEmail.previousElementSibling.textContent =
+			"A vaild email address is needed";
+		inputEmail.previousElementSibling.style.color = "red";
 		e.preventDefault();
 	}
-
+	if (!registerActivitiesCheck()) {
+		const chinCheck = checkboxOptions.firstElementChild;
+		alertMessage.innerHTML = " [Please choose an activity]";
+		alertMessage.style.fontSize = "80%";
+		alertMessage.style.color = "red";
+		chinCheck.appendChild(alertMessage);
+		chinCheck.style.color = "red";
+	}
 	if (
 		!validateCreditCard(inputCredit.value) &&
 		paymentDropDown.value === "credit card"
@@ -350,9 +365,13 @@ inputRegisterButton.addEventListener("submit", (e) => {
 		!validateZipCode(inputZipCode.value) &&
 		paymentDropDown.value === "credit card"
 	) {
+		inputZipCode.style.borderColor = "red";
+		inputZipCode.previousElementSibling.style.color = "red";
 		e.preventDefault();
 	}
 	if (!validateCVV(inputCVV.value) && paymentDropDown.value === "credit card") {
+		inputCVV.style.borderColor = "red";
+		inputCVV.previousElementSibling.style.color = "red";
 		e.preventDefault();
 	}
 });
