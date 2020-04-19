@@ -111,10 +111,6 @@ function registerActivitiesCheck() {
 	return false;
 }
 
-//executing the function.
-
-registerActivitiesCheck();
-
 //Declaring global variables for the "Payment Info" section.
 const paypal = document.querySelector(".paypal");
 const bitcoin = document.querySelector(".bitcoin");
@@ -139,7 +135,7 @@ paymentDropDown.addEventListener("change", (e) => {
 	}
 });
 
-//The following are verification functions for the distinct input fields on the form. It checks for the appropriate characters, letters or symbols associated with said field.
+//The following are verification functions for the distinct input fields on the form. It checks for the appropriate characters, letters or symbols associated with said field. It also displays an error message.
 
 //Verification function for the name field.
 
@@ -175,7 +171,7 @@ function nameEventParameters(validator) {
 
 inputName.addEventListener("input", nameEventParameters(validName));
 
-//Verification function for Email field.
+//Verification function for Email field, to make sure the user inputs all necessary symbols associated with an email. It also displays an error message.
 const inputEmail = document.querySelector("#mail");
 
 function validateEmail(email) {
@@ -208,7 +204,7 @@ function emailEventParameters(validator) {
 //Execute the Email validator function, in an event listener.
 inputEmail.addEventListener("input", emailEventParameters(validateEmail));
 
-//Verification function for the Credit Card field. To check whether or not the user inputs a valid credit card number- in terms of length and sequence.
+//Verification function for the Credit Card field. To check whether or not the user inputs a valid credit card number- in terms of length and sequence. It also displays an error message.
 
 const inputCredit = document.querySelector("#cc-num");
 
@@ -227,7 +223,7 @@ function creditErrorMessage(show, element, blank) {
 		element.style.color = "green";
 	}
 	if (blank) {
-		element.textContent = "Card Number:";
+		element.textContent = "Please enter a Credit Card Number.";
 		element.style.fontSize = "100%";
 		element.style.color = "black";
 	}
@@ -249,7 +245,7 @@ inputCredit.addEventListener(
 	creditEventParameters(validateCreditCard)
 );
 
-//Zipcode verification function.
+//Zipcode verification function. It also displays an error message.
 
 const inputZipCode = document.querySelector("#zip");
 
@@ -269,7 +265,7 @@ function zipcodeErrorMessage(show, element, blank) {
 		element.style.color = "green";
 	}
 	if (blank) {
-		element.textContent = "Zip Code:";
+		element.textContent = "Please enter a Zip Code.";
 		element.style.fontSize = "100%";
 		element.style.color = "black";
 	}
@@ -288,7 +284,7 @@ function zipcodeEventParameters(validator) {
 //Executing zip code validator, in an event listener.
 inputZipCode.addEventListener("input", zipcodeEventParameters(validateZipCode));
 
-//Verification function for the security code field in credit cards.
+//Verification function for the security code field in credit cards. It also displays an error message.
 
 const inputCVV = document.querySelector("#cvv");
 
@@ -298,7 +294,7 @@ function validateCVV(cvv) {
 function cvvErrorMessage(show, element, blank) {
 	if (show) {
 		element.textContent =
-			"Must be a valid Security Code: 3 digits located in front or back of credit card";
+			"Must be a valid Security Code: (3 digits located in front or back of credit card)";
 		element.style.fontColor = "red";
 		element.style.fontSize = "80%";
 		element.style.color = "red";
@@ -328,5 +324,3 @@ function cvvEventParameters(validator) {
 //Executing security code validator, in an event listener.
 
 inputCVV.addEventListener("input", cvvEventParameters(validateCVV));
-
-//This is an event listener for the Register Button, to verify that the user has sucessfully input the necessary information to all the form fields. If not, error messages are displayed by each field, in accordance to what is missing, or input the wrong way.
