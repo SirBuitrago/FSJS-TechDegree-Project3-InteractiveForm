@@ -99,7 +99,7 @@
 							</select>
 						</div>
 
-						<div id="colors-js-puns" class="">
+						<div style="display: none;" id="colors-js-puns" class="">
 							<label for="color">Color:</label>
 							<select id="color" onchange="(event.value)">
 								<option value="color" disabled selected>
@@ -210,8 +210,10 @@
 
 					<label for="payment">I'm going to pay with:</label>
 					<select id="payment" name="user-payment">
-						<option value="select method">Select Payment Method</option>
-						<option value="credit card">Credit Card</option>
+						<option value="select method" disabled>
+							Select Payment Method
+						</option>
+						<option value="credit card" selected>Credit Card</option>
 						<option value="paypal">PayPal</option>
 						<option value="bitcoin">Bitcoin</option>
 					</select>
@@ -257,7 +259,7 @@
 						</select>
 					</div>
 
-					<div id="paypal" class="paypal">
+					<div id="paypal" class="paypal" style="display: none;">
 						<p>
 							If you selected the PayPal option we'll take you to Paypal's site
 							to set up your billing information, when you click “Register”
@@ -265,7 +267,7 @@
 						</p>
 					</div>
 
-					<div id="bitcoin" class="bitcoin">
+					<div id="bitcoin" class="bitcoin" style="display: none;">
 						<p>
 							If you selected the Bitcoin option we'll take you to the Coinbase
 							site to set up your billing information. Due to the nature of

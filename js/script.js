@@ -20,6 +20,7 @@ const heartsColors = document.querySelectorAll("#hjs");
 const tDesign = document.querySelector("#design");
 const jsPuns = document.querySelector('option[value="js puns"]').value;
 const heartJS = document.querySelector('option[value="heart js"]').value;
+const colorsJsPuns = document.querySelector("#colors-js-puns");
 
 //Hiding each color element from the indicated drop list using a for loop within a function.
 function hideColors() {
@@ -35,14 +36,17 @@ tDesign.addEventListener("change", (e) => {
 		let eventValue = e.target.value;
 
 		if (eventValue === jsPuns) {
+			colorsJsPuns.style.display = "block";
 			punsColors[0].selected = true;
 			punsColors[i].hidden = false;
 			heartsColors[i].hidden = true;
 		} else if (eventValue === heartJS) {
+			colorsJsPuns.style.display = "block";
 			heartsColors[0].selected = true;
 			heartsColors[i].hidden = false;
 			punsColors[i].hidden = true;
 		} else {
+			colorsJsPuns.style.display = "none";
 			hideColors();
 		}
 	}
@@ -93,3 +97,63 @@ checkboxOptions.addEventListener("change", (e) => {
 
 	//console.log("This click event is functional");
 });
+
+//Declaring global variables for the "Payment Info" section.
+const paypal = document.querySelector(".paypal");
+const bitcoin = document.querySelector(".bitcoin");
+const creditCard = document.querySelector(".credit-card");
+const paymentDropDown = document.querySelector("#payment");
+
+//Event listener for the payment menu, so that when a user selects a payment option, all other payment options are hidden.
+paymentDropDown.addEventListener("change", (e) => {
+	document.getElementById("payment").firstElementChild.hidden = true;
+	if (e.target.value === "credit card") {
+		creditCard.style.display = "block";
+		paypal.style.display = "none";
+		bitcoin.style.display = "none";
+	} else if (e.target.value === "paypal") {
+		creditCard.style.display = "none";
+		paypal.style.display = "block";
+		bitcoin.style.display = "none";
+	} else if (e.target.value === "bitcoin") {
+		creditCard.style.display = "none";
+		paypal.style.display = "none";
+		bitcoin.style.display = "block";
+	}
+});
+
+//The following are verification functions for the input fields on the form.
+
+//Verification for the name field.
+
+function validName(name) {
+	return /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(name);
+}
+function nameErrorMessage(show, element, blank) {
+	if (show) {
+		element.nextElementSibling.style.borderColor = "red";
+		element.textContent =
+			"Please provide a valid Name (Upper and Lowercase only, hyphens accepted)";
+		element.style.color = "red";
+	} else {
+		element.nextElementSibling.style.borderColor = "rgb(111, 157, 220)";
+		element.textContent = "Name:";
+		element.style.color = "green";
+	}
+	if (blank) {
+		element.style.color = "black";
+	}
+}
+function createListenerName(validator) {
+	return (e) => {
+		const text = e.target.value;
+		const valid = validator(text);
+		const showTip = text !== "" && !valid;
+		const tooltip = e.target.previousElementSibling;
+		const blank = text == "";
+		nameErrorMessage(showTip, tooltip, blank);
+	};
+}
+
+//execute the Name validator
+inputName.addEventListener("input", createListenerName(validName));
