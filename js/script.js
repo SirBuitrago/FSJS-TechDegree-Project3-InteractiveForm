@@ -58,6 +58,7 @@ tDesign.addEventListener("change", (e) => {
 let totalCost = 0;
 const checkboxOptions = document.querySelector(".activities");
 const checkboxesCost = Array.from(document.getElementsByClassName("data-cost"));
+const checkboxes = document.querySelectorAll(".activities input");
 
 //Event listener for disabling the check boxes within the "Register for Activities" section that overlap or conflict with a similar time slot. The for loop is to iterate over the checkboxes and determine their same type, for said disabling. I also add the sum of the checkbox options that are clicked and print them to page.
 checkboxOptions.addEventListener("change", (e) => {
@@ -65,7 +66,6 @@ checkboxOptions.addEventListener("change", (e) => {
 	const total = document.querySelector(".conf-total");
 	const clickedCost = parseInt(e.target.getAttribute("data-cost"));
 	const clickedType = e.target.getAttribute("data-day-and-time");
-	const checkboxes = document.querySelectorAll(".activities input");
 
 	if (clicked) {
 		totalCost += clickedCost;
@@ -98,13 +98,30 @@ checkboxOptions.addEventListener("change", (e) => {
 	//console.log("This click event is functional");
 });
 
+//This function checks whether or not an activity has been chosen.
+
+function registerActivitiesCheck() {
+	for (let i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].type === "checkbox") {
+			if (checkboxes[i].checked) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+//executing the function.
+
+registerActivitiesCheck();
+
 //Declaring global variables for the "Payment Info" section.
 const paypal = document.querySelector(".paypal");
 const bitcoin = document.querySelector(".bitcoin");
 const creditCard = document.querySelector(".credit-card");
 const paymentDropDown = document.querySelector("#payment");
 
-//Event listener for the payment menu, so that when a user selects a payment option, all other payment options are hidden.
+//Event listener for the payment menu, so that when a user selects a specific form of payment, all other payment options are hidden.
 paymentDropDown.addEventListener("change", (e) => {
 	document.getElementById("payment").firstElementChild.hidden = true;
 	if (e.target.value === "credit card") {
@@ -122,40 +139,194 @@ paymentDropDown.addEventListener("change", (e) => {
 	}
 });
 
-//The following are verification functions for the input fields on the form.
+//The following are verification functions for the distinct input fields on the form. It checks for the appropriate characters, letters or symbols associated with said field.
 
-//Verification for the name field.
+//Verification function for the name field.
 
 function validName(name) {
 	return /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(name);
 }
 function nameErrorMessage(show, element, blank) {
 	if (show) {
-		element.nextElementSibling.style.borderColor = "red";
 		element.textContent =
-			"Please provide a valid Name (Upper and Lowercase only, hyphens accepted)";
+			"Provide a valid Name please: (Uppercase or Lowercase letters)";
 		element.style.color = "red";
 	} else {
-		element.nextElementSibling.style.borderColor = "rgb(111, 157, 220)";
-		element.textContent = "Name:";
+		element.textContent = "Look's Good!";
 		element.style.color = "green";
 	}
 	if (blank) {
+		element.textContent = "Name:";
 		element.style.color = "black";
 	}
 }
-function createListenerName(validator) {
+function nameEventParameters(validator) {
 	return (e) => {
 		const text = e.target.value;
-		const valid = validator(text);
-		const showTip = text !== "" && !valid;
-		const tooltip = e.target.previousElementSibling;
-		const blank = text == "";
-		nameErrorMessage(showTip, tooltip, blank);
+		const validate = validator(text);
+		const showText = text !== "" && !validate;
+		const toolText = e.target.previousElementSibling;
+		const empty = text == "";
+		nameErrorMessage(showText, toolText, empty);
 	};
 }
 
-//execute the Name validator function
-inputName.addEventListener("input", createListenerName(validName));
+//Execute the Name validator function, in an event listener.
 
-//
+inputName.addEventListener("input", nameEventParameters(validName));
+
+//Verification function for Email field.
+const inputEmail = document.querySelector("#mail");
+
+function validateEmail(email) {
+	return /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+}
+function emailErrorMessage(show, element, blank) {
+	if (show) {
+		element.textContent = "Provide a valid Email please";
+		element.style.color = "red";
+	} else {
+		element.textContent = "Looks Good!";
+		element.style.color = "green";
+	}
+	if (blank) {
+		element.textContent = "Email:";
+		element.style.color = "black";
+	}
+}
+function emailEventParameters(validator) {
+	return (e) => {
+		const text = e.target.value;
+		const validate = validator(text);
+		const showText = text !== "" && !validate;
+		const toolText = e.target.previousElementSibling;
+		const empty = text == "";
+		emailErrorMessage(showText, toolText, empty);
+	};
+}
+
+//Execute the Email validator function, in an event listener.
+inputEmail.addEventListener("input", emailEventParameters(validateEmail));
+
+//Verification function for the Credit Card field. To check whether or not the user inputs a valid credit card number- in terms of length and sequence.
+
+const inputCredit = document.querySelector("#cc-num");
+
+function validateCreditCard(cardNum) {
+	return /^[0-9]{13,16}$/.test(cardNum);
+}
+function creditErrorMessage(show, element, blank) {
+	if (show) {
+		element.textContent = "Credit Card Number needs to be: 13 to 16 digits";
+		element.style.color = "red";
+		element.style.fontColor = "red";
+		element.style.fontSize = "85%";
+	} else {
+		element.textContent = "Look's Good!";
+		element.style.fontSize = "100%";
+		element.style.color = "green";
+	}
+	if (blank) {
+		element.textContent = "Card Number:";
+		element.style.fontSize = "100%";
+		element.style.color = "black";
+	}
+}
+function creditEventParameters(validator) {
+	return (e) => {
+		const text = e.target.value;
+		const validate = validator(text);
+		const showText = text !== "" && !validate;
+		const toolText = e.target.previousElementSibling;
+		const empty = text == "";
+		creditErrorMessage(showText, toolText, empty);
+	};
+}
+
+//Executing credit card validator, in an event listener.
+inputCredit.addEventListener(
+	"input",
+	creditEventParameters(validateCreditCard)
+);
+
+//Zipcode verification function.
+
+const inputZipCode = document.querySelector("#zip");
+
+function validateZipCode(zipcode) {
+	return /^\d{5}$/.test(zipcode);
+}
+function zipcodeErrorMessage(show, element, blank) {
+	if (show) {
+		element.textContent = "Valid Zip Codes Only!";
+		element.style.fontColor = "red";
+		element.style.fontSize = "80%";
+		element.style.color = "red";
+	} else {
+		element.textContent = "Look's Good!";
+		element.style.fontSize = "100%";
+		element.style.borderColor = "black";
+		element.style.color = "green";
+	}
+	if (blank) {
+		element.textContent = "Zip Code:";
+		element.style.fontSize = "100%";
+		element.style.color = "black";
+	}
+}
+function zipcodeEventParameters(validator) {
+	return (e) => {
+		const text = e.target.value;
+		const validate = validator(text);
+		const showText = text !== "" && !validate;
+		const toolText = e.target.previousElementSibling;
+		const empty = text == "";
+		zipcodeErrorMessage(showText, toolText, empty);
+	};
+}
+
+//Executing zip code validator, in an event listener.
+inputZipCode.addEventListener("input", zipcodeEventParameters(validateZipCode));
+
+//Verification function for the security code field in credit cards.
+
+const inputCVV = document.querySelector("#cvv");
+
+function validateCVV(cvv) {
+	return /^\d{3}$/.test(cvv);
+}
+function cvvErrorMessage(show, element, blank) {
+	if (show) {
+		element.textContent =
+			"Must be a valid Security Code: 3 digits located in front or back of credit card";
+		element.style.fontColor = "red";
+		element.style.fontSize = "80%";
+		element.style.color = "red";
+	} else {
+		element.textContent = "Look's Good!";
+		element.style.fontSize = "100%";
+		element.style.borderColor = "black";
+		element.style.color = "green";
+	}
+	if (blank) {
+		element.textContent = "CVV:";
+		element.style.fontSize = "100%";
+		element.style.color = "black";
+	}
+}
+function cvvEventParameters(validator) {
+	return (e) => {
+		const text = e.target.value;
+		const validate = validator(text);
+		const showText = text !== "" && !validate;
+		const toolText = e.target.previousElementSibling;
+		const empty = text == "";
+		cvvErrorMessage(showText, toolText, empty);
+	};
+}
+
+//Executing security code validator, in an event listener.
+
+inputCVV.addEventListener("input", cvvEventParameters(validateCVV));
+
+//This is an event listener for the Register Button, to verify that the user has sucessfully input the necessary information to all the form fields. If not, error messages are displayed by each field, in accordance to what is missing, or input the wrong way.
