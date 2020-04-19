@@ -179,7 +179,7 @@ function validateEmail(email) {
 }
 function emailErrorMessage(show, element, blank) {
 	if (show) {
-		element.textContent = "Provide a valid Email please";
+		element.textContent = "Provide a valid Email Address please.";
 		element.style.color = "red";
 	} else {
 		element.textContent = "Looks Good!";
@@ -213,7 +213,7 @@ function validateCreditCard(cardNum) {
 }
 function creditErrorMessage(show, element, blank) {
 	if (show) {
-		element.textContent = "Credit Card Number needs to be: 13 to 16 digits";
+		element.textContent = "Credit Card Number needs to be: 13 to 16 digits.";
 		element.style.color = "red";
 		element.style.fontColor = "red";
 		element.style.fontSize = "85%";
