@@ -155,5 +155,7 @@ function createListenerName(validator) {
 	};
 }
 
-//execute the Name validator
+//execute the Name validator function
 inputName.addEventListener("input", createListenerName(validName));
+
+//
