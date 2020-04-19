@@ -148,7 +148,7 @@ function nameErrorMessage(show, element, blank) {
 			"Provide a valid Name please: (Uppercase or Lowercase letters)";
 		element.style.color = "red";
 	} else {
-		element.textContent = "Look's Good!";
+		element.textContent = "Looks Good!";
 		element.style.color = "green";
 	}
 	if (blank) {
@@ -179,7 +179,7 @@ function validateEmail(email) {
 }
 function emailErrorMessage(show, element, blank) {
 	if (show) {
-		element.textContent = "Provide a valid Email Address please.";
+		element.textContent = "Provide a valid Email please";
 		element.style.color = "red";
 	} else {
 		element.textContent = "Looks Good!";
@@ -213,12 +213,12 @@ function validateCreditCard(cardNum) {
 }
 function creditErrorMessage(show, element, blank) {
 	if (show) {
-		element.textContent = "Credit Card Number needs to be: 13 to 16 digits.";
+		element.textContent = "Credit Card Number needs to be: 13 to 16 digits";
 		element.style.color = "red";
 		element.style.fontColor = "red";
 		element.style.fontSize = "85%";
 	} else {
-		element.textContent = "Look's Good!";
+		element.textContent = "Looks Good!";
 		element.style.fontSize = "100%";
 		element.style.color = "green";
 	}
@@ -259,7 +259,7 @@ function zipcodeErrorMessage(show, element, blank) {
 		element.style.fontSize = "80%";
 		element.style.color = "red";
 	} else {
-		element.textContent = "Look's Good!";
+		element.textContent = "Looks Good!";
 		element.style.fontSize = "100%";
 		element.style.borderColor = "black";
 		element.style.color = "green";
@@ -293,13 +293,14 @@ function validateCVV(cvv) {
 }
 function cvvErrorMessage(show, element, blank) {
 	if (show) {
+		element.style.borderColor = "red";
 		element.textContent =
 			"Must be a valid Security Code: (3 digits located in front or back of credit card)";
 		element.style.fontColor = "red";
 		element.style.fontSize = "80%";
 		element.style.color = "red";
 	} else {
-		element.textContent = "Look's Good!";
+		element.textContent = "Looks Good!";
 		element.style.fontSize = "100%";
 		element.style.borderColor = "black";
 		element.style.color = "green";
@@ -324,3 +325,34 @@ function cvvEventParameters(validator) {
 //Executing security code validator, in an event listener.
 
 inputCVV.addEventListener("input", cvvEventParameters(validateCVV));
+
+//This is an event listener for the Register Button, to verify that the user has sucessfully input the necessary information in all the form fields. If not, the page prevents the form - from being submitted by reloading the page.
+
+const inputRegisterButton = document.querySelector("form");
+
+inputRegisterButton.addEventListener("submit", (e) => {
+	if (!validateName(inputName.value)) {
+		e.preventDefault();
+	}
+	if (!validateEmail(inputEmail.value)) {
+		e.preventDefault();
+	}
+
+	if (
+		!validateCreditCard(inputCredit.value) &&
+		paymentDropDown.value === "credit card"
+	) {
+		inputCredit.style.borderColor = "red";
+		inputCredit.previousElementSibling.style.color = "red";
+		e.preventDefault();
+	}
+	if (
+		!validateZipCode(inputZipCode.value) &&
+		paymentDropDown.value === "credit card"
+	) {
+		e.preventDefault();
+	}
+	if (!validateCVV(inputCVV.value) && paymentDropDown.value === "credit card") {
+		e.preventDefault();
+	}
+});
