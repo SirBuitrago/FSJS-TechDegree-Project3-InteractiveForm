@@ -333,17 +333,17 @@ const inputRegisterButton = document.querySelector("form");
 
 inputRegisterButton.addEventListener("submit", (e) => {
 	if (!validateName(inputName.value)) {
+		e.preventDefault();
 		inputName.style.borderColor = "red";
 		inputName.previousElementSibling.textContent = "A valid Name is needed.";
 		inputName.previousElementSibling.style.color = "red";
-		e.preventDefault();
 	}
 	if (!validateEmail(inputEmail.value)) {
+		e.preventDefault();
 		inputEmail.style.borderColor = "red";
 		inputEmail.previousElementSibling.textContent =
 			"A vaild email address is needed";
 		inputEmail.previousElementSibling.style.color = "red";
-		e.preventDefault();
 	}
 	if (!registerActivitiesCheck()) {
 		const chinCheck = checkboxOptions.firstElementChild;
@@ -357,21 +357,21 @@ inputRegisterButton.addEventListener("submit", (e) => {
 		!validateCreditCard(inputCredit.value) &&
 		paymentDropDown.value === "credit card"
 	) {
+		e.preventDefault();
 		inputCredit.style.borderColor = "red";
 		inputCredit.previousElementSibling.style.color = "red";
-		e.preventDefault();
 	}
 	if (
 		!validateZipCode(inputZipCode.value) &&
 		paymentDropDown.value === "credit card"
 	) {
+		e.preventDefault();
 		inputZipCode.style.borderColor = "red";
 		inputZipCode.previousElementSibling.style.color = "red";
-		e.preventDefault();
 	}
 	if (!validateCVV(inputCVV.value) && paymentDropDown.value === "credit card") {
+		e.preventDefault();
 		inputCVV.style.borderColor = "red";
 		inputCVV.previousElementSibling.style.color = "red";
-		e.preventDefault();
 	}
 });
