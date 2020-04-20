@@ -346,6 +346,7 @@ inputRegisterButton.addEventListener("submit", (e) => {
 		inputEmail.previousElementSibling.style.color = "red";
 	}
 	if (!registerActivitiesCheck()) {
+		e.preventDefault();
 		const chinCheck = checkboxOptions.firstElementChild;
 		alertMessage.innerHTML = " [Please choose an activity]";
 		alertMessage.style.fontSize = "80%";
