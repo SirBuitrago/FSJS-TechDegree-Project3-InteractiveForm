@@ -37,7 +37,7 @@ const jsPuns = document.querySelector('option[value="js puns"]').value;
 const heartJS = document.querySelector('option[value="heart js"]').value;
 const colorsJsPuns = document.querySelector("#colors-js-puns");
 
-//Hiding certain elements from the form page with a function.
+//Hiding certain elements early on, with a function. I included elements from the color section and two elements from the payment section - in order to make my javascript as unobtrusive as possible.
 const paypalID = document.querySelector("#paypal");
 const bitcoinID = document.querySelector("#bitcoin");
 
