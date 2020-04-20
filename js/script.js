@@ -11,6 +11,21 @@ FSJS project 3 - Interactive Form
 const inputName = document.getElementById("name");
 inputName.focus();
 
+// Here I build a function that makes a textbox appear, only when "other" is chosen in the drop down list for Job Role.
+
+const otherTitle = document.getElementById("other-title");
+otherTitle.style.display = "none";
+
+function changeDropDown() {
+	const titleValue = document.getElementById("title").value;
+
+	if (title.value === "other") {
+		otherTitle.style.display = "Block";
+	} else {
+		otherTitle.style.display = "none";
+	}
+}
+
 //Here I declare global variables for the "T-shirt info" section, create a function, event listener and if statement to control the flow of the drop down list and what options are hidden, unless a specific option is selected- in the previous list.
 
 const tSize = document.querySelectorAll("#size option");
@@ -22,13 +37,20 @@ const jsPuns = document.querySelector('option[value="js puns"]').value;
 const heartJS = document.querySelector('option[value="heart js"]').value;
 const colorsJsPuns = document.querySelector("#colors-js-puns");
 
-//Hiding each color element from the indicated drop list using a for loop within a function.
-function hideColors() {
+//Hiding certain elements from the form page with a function.
+const paypalID = document.querySelector("#paypal");
+const bitcoinID = document.querySelector("#bitcoin");
+
+function hideElements() {
 	for (let i = 0; i < 6; i++) {
 		tColors[i].hidden = true;
+		colorsJsPuns.style.display = "none";
+		paypalID.style.display = "none";
+		bitcoinID.style.display = "none";
 	}
 }
-hideColors();
+hideElements();
+
 //Event listener that determines which elements to show in the "color" droplist according to what is chosen in the previous "design" drop list.
 
 tDesign.addEventListener("change", (e) => {
@@ -47,7 +69,7 @@ tDesign.addEventListener("change", (e) => {
 			punsColors[i].hidden = true;
 		} else {
 			colorsJsPuns.style.display = "none";
-			hideColors();
+			hideElements();
 		}
 	}
 

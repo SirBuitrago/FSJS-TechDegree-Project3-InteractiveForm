@@ -39,21 +39,6 @@
 						<option value="designer">Designer</option>
 						<option value="student">Student</option>
 						<option value="other">Other</option>
-						<!-- Here I build a function that makes a textbox appear, only when "other" is chosen in the drop down list for Job Role. That way- if JS is disabled, this code can still run normally with the HTML. -->
-						<script>
-							function changeDropDown() {
-								const titleValue = document.getElementById("title").value;
-								const otherTitle = document.getElementById("other-title");
-
-								if (title.value === "other") {
-									otherTitle.style.display = "Block";
-								} else {
-									otherTitle.style.display = "none";
-								}
-							}
-						</script>
-
-						<script></script>
 
 						<!--  Text box for when "other" is selected in the drop down menu -->
 
@@ -61,8 +46,11 @@
 							inputtype="text"
 							id="other-title"
 							placeholder="Your Job Role"
-							style="display: none;"
 						/>
+
+						<script></script>
+
+						<script></script>
 					</select>
 				</fieldset>
 
@@ -99,7 +87,7 @@
 							</select>
 						</div>
 
-						<div style="display: none;" id="colors-js-puns" class="">
+						<div id="colors-js-puns" class="">
 							<label for="color">Color:</label>
 							<select id="color" onchange="(event.value)">
 								<option value="color" disabled selected>
@@ -259,7 +247,7 @@
 						</select>
 					</div>
 
-					<div id="paypal" class="paypal" style="display: none;">
+					<div id="paypal" class="paypal">
 						<p>
 							If you selected the PayPal option we'll take you to Paypal's site
 							to set up your billing information, when you click “Register”
@@ -267,7 +255,7 @@
 						</p>
 					</div>
 
-					<div id="bitcoin" class="bitcoin" style="display: none;">
+					<div id="bitcoin" class="bitcoin">
 						<p>
 							If you selected the Bitcoin option we'll take you to the Coinbase
 							site to set up your billing information. Due to the nature of
