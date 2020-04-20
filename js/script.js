@@ -139,7 +139,7 @@ paymentDropDown.addEventListener("change", (e) => {
 
 //Verification function for the name field.
 
-function validName(name) {
+function validateName(name) {
 	return /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(name);
 }
 function nameErrorMessage(show, element, blank) {
@@ -169,7 +169,7 @@ function nameEventParameters(validator) {
 
 //Execute the Name validator function, in an event listener.
 
-inputName.addEventListener("input", nameEventParameters(validName));
+inputName.addEventListener("input", nameEventParameters(validateName));
 
 //Verification function for Email field, to make sure the user inputs all necessary symbols associated with an email. It also displays an error message.
 const inputEmail = document.querySelector("#mail");
